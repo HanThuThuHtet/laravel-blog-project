@@ -11,6 +11,39 @@ use Illuminate\Support\Facades\Gate;
 class BlogController extends Controller
 {
     public function index() {
+        return view('blogs.index',[
+            'blogs' => Blog::latest()
+                    ->filter(request(['search','category','username']))
+                    ->paginate(6)
+                    ->withQueryString(),
+        ]);
+    }
+
+    public function show(Blog $blog){
+        return view('blogs.show',[
+            'blog' => $blog,
+            'randomBlogs' => Blog::where('id', '!=', $blog->id)
+                            ->inRandomOrder()->take(3)->get()
+        ]);
+    }
+
+    public function subscriptionHandler(Blog $blog)
+    {
+
+        if(User::find(auth()->id())->isSubscribed($blog)){
+            $blog->unSubscribe();
+        }else{
+            $blog->subscribe();
+        }
+        return redirect()->back();
+    }
+}
+
+
+
+
+
+
 
 
 
@@ -22,12 +55,7 @@ class BlogController extends Controller
         //return ["key" => "han"]; //assc array to json
         // dd(request('search'));
 
-        return view('blogs.index',[
-            'blogs' => Blog::latest()
-                    ->filter(request(['search','category','username']))
-                    ->paginate(6)
-                    ->withQueryString(),
-            // 'blogs' => Blog::latest()->filter(request(['search','category','username']))->get(),
+ // 'blogs' => Blog::latest()->filter(request(['search','category','username']))->get(),
             // 'categories' => Category::all()
             // 'currentCategory' => request(['category'])
 
@@ -40,10 +68,13 @@ class BlogController extends Controller
             // 'blogs' => Blog::all()
 
 
-        ]);
-    }
 
-    // protected function getBlogs(){
+//if auth()->user()->isSubsribed()
+        // if(auth()->user()->User::isSubscribed($blog)){
+        //if(User::find(auth()->id())->isSubscribed($blog))
+
+
+// protected function getBlogs(){
 
     //     return Blog::latest()->filter()->get();
     //     //oop
@@ -61,37 +92,3 @@ class BlogController extends Controller
 
 
     // }
-
-
-
-
-    public function show(Blog $blog){
-        return view('blogs.show',[
-            'blog' => $blog,
-            'randomBlogs' => Blog::inRandomOrder()->take(3)->get()
-        ]);
-    }
-
-    public function subscriptionHandler(Blog $blog)
-    {
-        //if auth()->user()->isSubsribed()
-        // if(auth()->user()->User::isSubscribed($blog)){
-        //if(User::find(auth()->id())->isSubscribed($blog))
-        if(User::find(auth()->id())->isSubscribed($blog)){
-            $blog->unSubscribe();
-        }else{
-            $blog->subscribe();
-        }
-        return redirect()->back();
-    }
-
-
-
-}
-
-
-
-
-
-
-
