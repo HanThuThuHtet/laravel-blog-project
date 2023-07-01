@@ -32,7 +32,7 @@
                                  id="exampleInputPassword1">
                                  <x-error name="password" />
                         </div>
-                        <button type="submit" class="btn btn-info">Submit</button>
+                        <button type="submit" class="btn btn-info text-white">Submit</button>
                         {{-- error message all in one --}}
                         {{-- <ul>
                             @foreach ($errors->all() as $error)
