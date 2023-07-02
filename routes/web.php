@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminBlogController;
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
@@ -61,6 +62,24 @@ Route::middleware('can:admin')->group(function(){
 
     //dashboard
     Route::get('/admin/blogs',[AdminBlogController::class,'index']);
+
+
+    //create category
+    Route::get('/admin/blogs/create-category',[AdminCategoryController::class,'create']);
+    Route::post('/admin/blogs/store-category',[AdminCategoryController::class,'store']);
+
+    //delete category
+    Route::delete('/admin/blogs/{category:slug}/delete-category',[AdminCategoryController::class,'destroy']);
+
+    //edit category
+    Route::get('/admin/blogs/{category:slug}/edit-category',[AdminCategoryController::class,'edit']);
+
+    //update blog
+    Route::patch('/admin/blogs/{category:slug}/update-category',[AdminCategoryController::class,'update']);
+
+    //show all category
+    Route::get('/admin/blogs/category-lists',[AdminCategoryController::class,'index']);
+
 });
 
 

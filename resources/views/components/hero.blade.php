@@ -9,20 +9,20 @@
             <div class="col 6">
                 <h1 class="display-5 fw-bold">Yumeno Nihon</h1>
 
-                  <p class="lead mb-4 lh-lg mt-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias cumque quibusdam corrupti, reiciendis quas porro necessitatibus sed totam recusandae iure? Quam sint, aperiam minima soluta accusamus dicta magnam harum natus.
+                  <p class="lead  mb-4 lh-lg mt-4">
+                    Are you ready to embark on a journey to the captivating world of Japan? Our blog is here to take you on an extraordinary adventure through the heart of Japanese culture, mouthwatering cuisine, breathtaking travel destinations, and the enchanting Japanese language.
                   </p>
                   <div class="d-grid gap-2 d-sm-flex ">
-                    <a
-                      href="#subscribe"
+                    {{-- <a
+                      href="/register"
                       type="button"
                       class="btn btn-info text-white btn-lg  gap-3"
                     >
                       Subscribe Now
-                    </a>
+                    </a> --}}
                     <a
                       type="button"
-                      class="btn btn-outline-secondary btn-lg px-4"
+                      class="btn btn-info text-white btn-lg "
                       href="#blogs"
                     >
                       Read Blogs

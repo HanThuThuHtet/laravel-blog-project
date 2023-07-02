@@ -1,7 +1,7 @@
 @props(['name','type'=>'text' , 'value' => ''])
 <x-form.input-wrapper>
     <x-form.label :name="$name" />
-    <input required type="{{$type}}"
+    <input  type="{{$type}}"
             id="{{$name}}"
            name="{{$name}}"
            class="form-control"
