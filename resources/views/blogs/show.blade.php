@@ -37,10 +37,14 @@
                 <form action="/blogs/{{$blog->slug}}/subscription" method="post">
                     @csrf
                     @auth
-                        @if (auth()->user()->isSubscribed($blog))
-                            <button class="btn btn-outline-info btn-sm">Unsubscribe</button>
+                        @if (auth()->id() ==  $blog->author->id)
+                        <a href="/admin/blogs/{{$blog->slug}}/edit" class="btn btn-info text-white btn-sm">Edit</a>
                         @else
-                            <button class="btn btn-info text-white btn-sm">Subscribe</button>
+                            @if (auth()->user()->isSubscribed($blog))
+                                <button class="btn btn-outline-info btn-sm">Unsubscribe</button>
+                            @else
+                                <button class="btn btn-info text-white btn-sm">Subscribe</button>
+                            @endif
                         @endif
                     @endauth
                 </form>

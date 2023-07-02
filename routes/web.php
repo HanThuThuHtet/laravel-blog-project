@@ -74,7 +74,7 @@ Route::middleware('can:admin')->group(function(){
     //edit category
     Route::get('/admin/blogs/{category:slug}/edit-category',[AdminCategoryController::class,'edit']);
 
-    //update blog
+    //update category
     Route::patch('/admin/blogs/{category:slug}/update-category',[AdminCategoryController::class,'update']);
 
     //show all category
